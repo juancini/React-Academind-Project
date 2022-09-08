@@ -3,21 +3,38 @@ import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
   // define states
-  const [itemTitle, setItemTitle] = useState();
-  const [itemAmount, setItemAmount] = useState();
-  const [itemDate, setItemDate] = useState();
+  // one way to declare states (most common)
+  //   const [itemTitle, setItemTitle] = useState();
+  //   const [itemAmount, setItemAmount] = useState();
+  //   const [itemDate, setItemDate] = useState();
+
+    // another way to declare multiple states (less common)
+  const [userInput, setUserInput] = useState({
+    ItemTitle: "",
+    ItemAmount: "",
+    ItemDate: "",
+  });
 
   // events handlers
   const titleChangeHandler = (event) => {
-    setItemTitle(event.target.value);
+    setUserInput({
+      ...userInput,
+      ItemTitle: event.target.value,
+    });
   };
 
   const amountChangeHandler = (event) => {
-    setItemAmount(event.target.value);
+    setUserInput({
+      ...userInput,
+      ItemAmount: event.target.value,
+    });
   };
 
   const dateChangeHandler = (event) => {
-    setItemDate(event.target.value);
+    setUserInput({
+      ...userInput,
+      ItemDate: event.target.value,
+    });
   };
 
   // main component JSX
