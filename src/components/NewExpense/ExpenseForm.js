@@ -4,11 +4,13 @@ import "./ExpenseForm.css";
 const ExpenseForm = () => {
   // define states
   // one way to declare states (most common)
+
   //   const [itemTitle, setItemTitle] = useState();
   //   const [itemAmount, setItemAmount] = useState();
   //   const [itemDate, setItemDate] = useState();
 
-    // another way to declare multiple states (less common)
+  // another way to declare multiple states (less common)
+
   const [userInput, setUserInput] = useState({
     ItemTitle: "",
     ItemAmount: "",
@@ -17,23 +19,32 @@ const ExpenseForm = () => {
 
   // events handlers
   const titleChangeHandler = (event) => {
-    setUserInput({
-      ...userInput,
-      ItemTitle: event.target.value,
-    });
+    // this method for changing and storing data is not ideal
+    // should use an arrow function
+    
+    // setUserInput({
+      //   ...userInput,
+      //   ItemTitle: event.target.value,
+      // });
+      
+      // correct way to change multiple states with arrow function
+      // not using prevState could potentially cause problems because
+      // react could use an incorrect or outdate snapshot of userInput
+      // due react does not update them instantly
+    setUserInput((prevState) => {
+      return {...prevState, ItemTitle: event.target.value};
+    })
   };
 
   const amountChangeHandler = (event) => {
-    setUserInput({
-      ...userInput,
-      ItemAmount: event.target.value,
+    setUserInput((prevState) => {
+      return {...prevState, ItemAmount: event.target.value}
     });
   };
 
   const dateChangeHandler = (event) => {
-    setUserInput({
-      ...userInput,
-      ItemDate: event.target.value,
+    setUserInput((prevState) => {
+      return {...prevState, ItemDate: event.target.value}
     });
   };
 
